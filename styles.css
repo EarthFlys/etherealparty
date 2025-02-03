@@ -98,22 +98,24 @@ html {
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px 20px;  /* ลด padding ลง */
+    top: 20px; /* ระยะห่างจากด้านบน */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* ความกว้างของ Navbar */
+    max-width: 1200px; /* จำกัดความกว้างสูงสุด */
+    padding: 15px 30px; /* ปรับ padding */
     background: linear-gradient(135deg, rgba(158, 103, 172, 0.9) 0%, rgba(114, 76, 172, 0.9) 100%);
     backdrop-filter: blur(10px);
     color: white;
     z-index: 1000;
+    border-radius: 50px; /* ทำให้ Navbar เป็นวงรี */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เพิ่มเงา */
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);  /* ลดความเข้มของเงาลง */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1); /* เส้นขอบ */
 }
 
 .navbar.hidden {
-    transform: translateY(-100%);
+    transform: translate(-50%, -100%); /* ซ่อน Navbar ไปด้านบน */
 }
 
 .navbar .logo a {
@@ -127,23 +129,24 @@ html {
 }
 
 .logo-img {
-    height: 50px;  /* ลดขนาดโลโก้ */
+    height: 50px;
     width: auto;
 }
 
 .nav-links {
     display: flex;
-    gap: 20px;  /* ลดระยะห่างระหว่างลิงก์ */
+    gap: 20px; /* ระยะห่างระหว่างลิงก์ */
 }
 
 .nav-links a {
     position: relative;
-    padding: 8px 12px;  /* ลด padding ของลิงก์ */
-    font-size: 1rem;  /* ขนาดฟอนต์ที่พอเหมาะ */
+    padding: 10px 20px; /* ปรับ padding */
+    font-size: 1rem;
     color: white;
     text-decoration: none;
     transition: all 0.3s ease;
-    border-radius: 6px;  /* มุมโค้งเล็กน้อย */
+    border-radius: 25px; /* ทำให้ลิงก์เป็นวงรี */
+    background: rgba(255, 255, 255, 0.1); /* เพิ่มพื้นหลังโปร่งใส */
 }
 
 .nav-links a::before {
@@ -158,6 +161,7 @@ html {
 }
 
 .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2); /* เปลี่ยนพื้นหลังเมื่อ hover */
     color: #FFD700;
 }
 
@@ -166,43 +170,67 @@ html {
     left: 0;
 }
 
-/* Mobile Menu */
+/* เพิ่มส่วนนี้ใน styles.css */
+/* Mobile Menu Styles */
 .menu-toggle {
     display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
     cursor: pointer;
-    font-size: 1.5rem;  /* ขนาดไอคอนเมนู */
+    z-index: 1001;
+    position: fixed;
+    top: 15px;
+    right: 15px;
 }
 
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
+    .navbar {
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        border-radius: 0;
+        padding: 10px 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .nav-links {
         position: fixed;
-        top: 70px;
+        top: 60px;
         right: -100%;
-        flex-direction: column;
-        background: rgba(114, 76, 172, 0.95);
-        backdrop-filter: blur(15px);
-        width: 70%;
-        height: calc(100vh - 70px);
-        padding: 20px;
+        height: calc(100vh - 60px);
+        backdrop-filter: blur(20px);
         transition: all 0.3s ease;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav-links.active {
         right: 0;
     }
 
-    .nav-links a {
-        padding: 15px 20px;  /* เพิ่ม padding ในโหมดมือถือ */
-        font-size: 1.2rem;  /* ขนาดฟอนต์ใหญ่ขึ้นในมือถือ */
+    .menu-toggle {
+        display: block;
     }
 
-    .nav-links a:hover {
-        background: rgba(255, 255, 255, 0.1);
+    .nav-links a {
+        font-size: 1.1rem;
+        padding: 15px;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .overlay h1 {
+        font-size: 2.5rem;
+    }
+    
+    .policy-card h3 {
+        font-size: 1.8rem;
+    }
+    
+    .policy-card li {
+        font-size: 1rem;
     }
 }
 
