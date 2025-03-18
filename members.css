@@ -1,0 +1,204 @@
+/*=============== SHARED BASE STYLES ===============*/
+:root {
+  --header-height: 80px;
+  --nav-bg: white;
+  --nav-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --primary-color: #6c5ce7;
+  --secondary-color: #a8a4ff;
+  --text-color: #2d3436;
+  --body-bg: #f9f9f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: "Noto Sans Thai", sans-serif;
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  padding-top: var(--header-height);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* แก้ไขส่วนโลโก้ */
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* เพิ่มระยะห่างระหว่างโลโก้ */
+  height: 100%; /* ความสูงเต็มตาม Navbar */
+}
+
+.logo-img {
+  height: 70px; /* กำหนดความสูงเท่ากับ Navbar */
+  width: auto;
+  object-fit: contain; /* รักษาสัดส่วนภาพ */
+  transition: transform 0.3s ease;
+}
+
+.school-logo {
+  border-left: 2px solid #eee; /* เส้นแบ่งโลโก้ */
+  padding-left: 20px; /* ระยะห่างจากเส้น */
+}
+
+/* Responsive สำหรับมือถือ */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 50px; /* ลดขนาดบนมือถือ */
+  }
+
+  .school-logo {
+    padding-left: 10px;
+    border-width: 1px;
+  }
+
+  .logo-group {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    height: 40px; /* ขนาดเล็กมากสำหรับหน้าจอแคบ */
+  }
+
+  .school-logo {
+    border-left: none; /* ลบเส้นแบ่งบนมือถือ */
+    padding-left: 0;
+  }
+}
+
+/* =============== DESKTOP MENU =============== */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav__link {
+  color: #6c5ce7; /* สีเดียวกับโลโก้ */
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nav__link:hover {
+  background: rgba(108, 92, 231, 0.1);
+  color: #5a4acf; /* สีเข้มขึ้นเมื่อ hover */
+}
+
+/* =============== MOBILE MENU =============== */
+@media screen and (max-width: 768px) {
+  .nav__menu {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 6rem 2rem;
+    transition: top 0.4s ease;
+    z-index: 998;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .nav__link {
+    font-size: 1.4rem; /* ขนาดตัวหนังสือใหญ่ขึ้น */
+    color: #6c5ce7; /* สีเดียวกับโลโก้ */
+  }
+
+  .show-menu {
+    top: 0;
+  }
+}
+
+/* =============== HAMBURGER BUTTON =============== */
+.nav__toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 999;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #6c5ce7; /* สีเดียวกับโลโก้ */
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+.hamburger {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hamburger::before {
+  content: "";
+  transform: translateY(-8px);
+}
+
+.hamburger::after {
+  content: "";
+  transform: translateY(8px);
+}
+
+.nav__toggle.active .hamburger {
+  background: transparent;
+}
+
+.nav__toggle.active .hamburger::before {
+  transform: rotate(45deg);
+}
+
+.nav__toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 768px) {
+  .nav__toggle {
+    display: block;
+  }
+}

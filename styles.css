@@ -1,0 +1,634 @@
+/* เพิ่มสไตล์เฉพาะสำหรับหน้านโยบาย */
+.policy-section {
+  padding: 4rem 2rem;
+  background-color: #f9f9f9;
+}
+
+.policy-category {
+  margin-bottom: 3rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.policy-card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  border-left: 4px solid #6c5ce7;
+}
+
+.policy-card:hover {
+  transform: translateY(-5px);
+}
+
+.policy-icon {
+  font-size: 2.5rem;
+  color: #6c5ce7;
+  margin-bottom: 1rem;
+}
+
+.policy-card h3 {
+  color: #2d3436;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.policy-card p1 {
+  color: #2d3436;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.policy-card ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.policy-card li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 20px;
+}
+
+.policy-card li:before {
+  content: "•";
+  color: #6c5ce7;
+  position: absolute;
+  left: 0;
+}
+
+.category-title {
+  color: #2d3436;
+  border-bottom: 3px solid #6c5ce7;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+/* เพิ่มสไตล์จาก CSS ที่มีอยู่แล้ว */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans Thai", sans-serif;
+  background-color: var(--body-color);
+  color: var(--text-color);
+  padding-top: 80px; /* ความสูงของ Header */
+}
+
+html {
+  scroll-behavior: smooth; /* เพิ่มการเลื่อนหน้าแบบราบรื่น */
+}
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  --first-color: hsl(230, 75%, 56%);
+  --title-color: hsl(230, 75%, 15%);
+  --text-color: hsl(230, 12%, 40%);
+  --body-color: hsl(230, 100%, 98%);
+  --container-color: hsl(230, 100%, 97%);
+  --border-color: hsl(230, 25%, 80%);
+
+  /*========== Font and typography ==========*/
+  --body-font: "Syne", sans-serif;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: 0.938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1023px) {
+  :root {
+    --h2-font-size: 1.5rem;
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+.main {
+  position: relative;
+  height: 100vh;
+}
+
+.main__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+}
+
+/* =============== NAVBAR STYLES =============== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header.hide {
+  transform: translateY(-100%);
+}
+
+/* เพิ่มส่วนนี้เพื่อป้องกันเนื้อหาถูกบัง */
+body {
+  padding-top: 80px; /* ความสูงของ Header */
+}
+
+/* ลบ position: sticky ออกจาก .navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* แก้ไขส่วนโลโก้ */
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* เพิ่มระยะห่างระหว่างโลโก้ */
+  height: 100%; /* ความสูงเต็มตาม Navbar */
+}
+
+.logo-img {
+  height: 70px; /* กำหนดความสูงเท่ากับ Navbar */
+  width: auto;
+  object-fit: contain; /* รักษาสัดส่วนภาพ */
+  transition: transform 0.3s ease;
+}
+
+.school-logo {
+  border-left: 2px solid #eee; /* เส้นแบ่งโลโก้ */
+  padding-left: 20px; /* ระยะห่างจากเส้น */
+}
+
+/* Responsive สำหรับมือถือ */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 50px; /* ลดขนาดบนมือถือ */
+  }
+
+  .school-logo {
+    padding-left: 10px;
+    border-width: 1px;
+  }
+
+  .logo-group {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    height: 40px; /* ขนาดเล็กมากสำหรับหน้าจอแคบ */
+  }
+
+  .school-logo {
+    border-left: none; /* ลบเส้นแบ่งบนมือถือ */
+    padding-left: 0;
+  }
+}
+
+/* =============== DESKTOP MENU =============== */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav__link {
+  color: #6c5ce7; /* สีเดียวกับโลโก้ */
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nav__link:hover {
+  background: rgba(108, 92, 231, 0.1);
+  color: #5a4acf; /* สีเข้มขึ้นเมื่อ hover */
+}
+
+/* =============== MOBILE MENU =============== */
+@media screen and (max-width: 768px) {
+  .nav__menu {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 6rem 2rem;
+    transition: top 0.4s ease;
+    z-index: 998;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .nav__link {
+    font-size: 1.4rem; /* ขนาดตัวหนังสือใหญ่ขึ้น */
+    color: #6c5ce7; /* สีเดียวกับโลโก้ */
+  }
+
+  .show-menu {
+    top: 0;
+  }
+}
+
+/* =============== HAMBURGER BUTTON =============== */
+.nav__toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 999;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #6c5ce7; /* สีเดียวกับโลโก้ */
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+.hamburger {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hamburger::before {
+  content: "";
+  transform: translateY(-8px);
+}
+
+.hamburger::after {
+  content: "";
+  transform: translateY(8px);
+}
+
+.nav__toggle.active .hamburger {
+  background: transparent;
+}
+
+.nav__toggle.active .hamburger::before {
+  transform: rotate(45deg);
+}
+
+.nav__toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 768px) {
+  .nav__toggle {
+    display: block;
+  }
+}
+
+/* Container สำหรับภาพพื้นหลัง */
+.background-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* ให้พื้นหลังมีความสูงเต็มหน้าจอ */
+}
+
+/* กำหนดให้ภาพมีขนาดพอดีกับพื้นที่ */
+.background-img {
+  width: 100%; /* ภาพจะขยายไปตามความกว้างของหน้าจอ แต่ไม่เกินขนาดจริง */
+  height: 100%; /* ภาพจะขยายไปตามความสูงของหน้าจอ แต่ไม่เกินขนาดจริง */
+  object-fit: contain; /* ให้ภาพไม่เกินขอบ และคงสัดส่วนภาพ */
+  display: flex;
+}
+
+/* เนื้อหาภายในเว็บ */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* ทำให้เนื้อหากลางจอ */
+  color: white; /* สีตัวอักษร */
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+.overlay h1 {
+  font-size: 80px;
+  font-weight: 600;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* ทำให้ข้อความชัดเจนบนภาพ */
+}
+
+/* ส่วนของสมาชิกพรรค */
+.members {
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+}
+
+.members h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.member-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.member-details p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  margin: 8px 0;
+  font-weight: 550;
+}
+.member-details p1 {
+  font-size: 16px; /* ขนาดตัวอักษร */
+  color: #333; /* สีของข้อความ */
+  line-height: 1.6; /* ระยะห่างระหว่างบรรทัด */
+  margin: 8px 0; /* เว้นระยะด้านบนและล่าง */
+  font-weight: 500; /* ความหนาของตัวอักษร */
+}
+
+.member-details p1 {
+  font-style: italic; /* ตัวเอียงเพื่อเน้นคำคม */
+  color: #555; /* สีเทาเข้ม */
+}
+
+.member {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  width: calc(33.33% - 20px); /* 3 คนต่อแถว */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+  margin-bottom: 20px;
+}
+.member:hover {
+  transform: translateY(-10px); /* เอฟเฟคเมื่อ hover */
+}
+
+/* ขนาดของรูปสมาชิก */
+.member-img {
+  width: 100%; /* ให้รูปเต็มขนาดของกรอบที่กำหนด */
+  height: auto; /* ปรับให้สูงตามอัตราส่วน */
+  max-width: 1080px; /* กำหนดความกว้างสูงสุด */
+  max-height: 1350px; /* กำหนดความสูงสูงสุด */
+  object-fit: cover; /* ปรับภาพให้เต็มกรอบโดยไม่เบี้ยว */
+  margin: 0 auto; /* จัดรูปให้อยู่ตรงกลาง */
+}
+
+.member-details {
+  padding: 15px;
+}
+
+.member-details h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.member-details p {
+  font-size: 16px;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .member {
+    width: calc(50% - 20px); /* 2 คนต่อแถวในหน้าจอเล็ก */
+  }
+}
+
+@media (max-width: 480px) {
+  .member {
+    width: 100%; /* 1 คนต่อแถวในหน้าจอมือถือ */
+  }
+}
+
+/* การจัดการวงรีและแอนิเมชันให้กับหัวข้อ "สมาชิกพรรค" */
+.member-heading {
+  display: flex; /* ใช้ flexbox ในการจัดตำแหน่ง */
+  justify-content: center; /* จัดตำแหน่งข้อความให้ตรงกลางในแนวนอน */
+  align-items: center; /* จัดตำแหน่งข้อความให้ตรงกลางในแนวตั้ง */
+  padding: 10px 20px; /* เพิ่มพื้นที่รอบข้อความ */
+  background-color: rgba(135, 71, 151, 0.8); /* สีพื้นหลัง */
+  color: white; /* สีของข้อความ */
+  font-size: 28px; /* ขนาดฟอนต์ */
+  border-radius: 50px; /* ทำให้เป็นวงรี */
+  transition: transform 0.5s ease, background-color 0.5s ease; /* เพิ่มการเปลี่ยนแปลงอย่างนุ่มนวล */
+  text-align: center; /* จัดข้อความให้ตรงกลาง */
+  margin-bottom: 30px; /* เพิ่มช่องว่างด้านล่าง */
+}
+
+.member-heading .count {
+  font-size: 25px; /* ขนาดฟอนต์ของ "41 คน" */
+  font-weight: bold; /* ทำให้ตัวเลขหนากว่า */
+  color: #ffd700; /* เปลี่ยนสีของ "41 คน" */
+  margin-left: 10px; /* เพิ่มช่องว่างระหว่างข้อความ */
+}
+
+/* เพิ่มแอนิเมชันขยายขนาดและเปลี่ยนพื้นหลังเมื่อ hover */
+.member-heading:hover {
+  background-color: #7a4471; /* สีพื้นหลังเมื่อ hover */
+  transform: scale(1.1); /* ขยายขนาดเล็กน้อย */
+}
+
+/* ส่วนของ Copyright */
+.copyright {
+  background-color: #f4f4f4;
+  padding: 20px 0;
+  text-align: center; /* จัดให้อยู่ตรงกลาง */
+}
+
+.copyright-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-logo {
+  height: 40px; /* ขนาดของโลโก้ในฟุตเตอร์ */
+  width: auto;
+}
+
+.copyright-container span {
+  font-size: 14px;
+  color: #555;
+}
+
+.social-media {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-media i {
+  font-size: 20px; /* ขนาดของไอคอน Instagram */
+  color: #c13584; /* สีของ Instagram */
+  transition: color 0.3s;
+}
+
+.social-media i:hover {
+  color: #e1306c; /* สีของ Instagram เมื่อ hover */
+}
+
+/* สไตล์ปุ่มวงรี */
+.button {
+  background-color: #7a3ebd; /* สีม่วง */
+  color: white;
+  padding: 12px 30px; /* เพิ่ม padding เพื่อให้ปุ่มใหญ่ขึ้น */
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 30px; /* ทำให้ปุ่มเป็นวงรี */
+  display: inline-flex; /* ใช้ flex เพื่อให้ข้อความและลูกศรจัดเรียงในแนวนอน */
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px; /* เว้นระยะจากข้อความ */
+  margin-bottom: 20px; /* เว้นระยะจากด้านล่าง */
+  width: auto; /* ความกว้างจะปรับตามเนื้อหาภายใน */
+  max-width: 250px; /* กำหนดความกว้างสูงสุด */
+  white-space: nowrap; /* ป้องกันข้อความห่อบรรทัด */
+  text-overflow: ellipsis; /* ทำให้ข้อความยาวเกินไปไม่ถูกตัด */
+}
+
+.button i {
+  margin-left: 10px; /* ระยะห่างระหว่างข้อความกับลูกศร */
+  transition: margin-left 0.3s ease;
+}
+
+.button:hover {
+  background-color: #5a2a96; /* เมื่อ hover สีจะเข้มขึ้น */
+  transform: scale(1.05); /* ขยายขนาดเล็กน้อยเมื่อ hover */
+}
+
+.button:active {
+  background-color: #4a1f73; /* เมื่อกดปุ่ม */
+}
+
+.button:hover i {
+  margin-left: 15px; /* ขยายระยะห่างของลูกศรเมื่อ hover */
+}
+/* สไตล์หน้าติดต่อ */
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 160px); /* หักส่วน header และ footer */
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.google-form {
+  width: 100%;
+  max-width: 800px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+@media (max-width: 768px) {
+  .google-form {
+    width: 95%;
+    height: 95vh;
+  }
+
+  .contact-container {
+    padding: 1rem;
+    min-height: calc(100vh - 140px);
+  }
+}
