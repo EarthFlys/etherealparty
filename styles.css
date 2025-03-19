@@ -916,6 +916,22 @@ body {
   margin-bottom: 20px;
 }
 
+/* สำหรับ Desktop View */
+.home-page .member-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.home-page .member {
+  flex: 1 1 calc(33.33% - 40px); /* 3 คนต่อแถว */
+  max-width: calc(33.33% - 40px);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* จัดลำดับหัวหน้าให้อยู่ตรงกลาง */
 .home-page .member:nth-child(1) {
   order: 1; /* รองประธานคนที่ 1 */
 }
@@ -928,7 +944,7 @@ body {
   order: 3; /* รองประธานคนที่ 2 */
 }
 
-/* สำหรับมือถือ - เปลี่ยนลำดับ */
+/* สำหรับ Mobile View */
 @media (max-width: 768px) {
   .home-page .member-list {
     flex-direction: column;
@@ -939,6 +955,7 @@ body {
     max-width: 100%;
   }
 
+  /* จัดลำดับหัวหน้าให้อยู่ด้านบน */
   .home-page .member:nth-child(1) {
     order: 2; /* รองประธานคนที่ 1 ไปอยู่ลำดับที่ 2 */
   }
@@ -949,5 +966,23 @@ body {
 
   .home-page .member:nth-child(3) {
     order: 3; /* รองประธานคนที่ 2 อยู่ลำดับที่ 3 */
+  }
+
+  /* จัดลำดับ DEV1 ให้อยู่ด้านบน */
+  .home-page .banker .member:nth-child(1) {
+    order: 1; /* DEV1 อยู่ลำดับที่ 1 */
+  }
+
+  .home-page .banker .member:nth-child(2) {
+    order: 2; /* DEV2 อยู่ลำดับที่ 2 */
+  }
+
+  /* จัดลำดับเหรัญญิกให้อยู่ด้านบน */
+  .home-page .secretary:nth-of-type(2) .member:nth-child(2) {
+    order: 2; /* เหรัญญิก อยู่ลำดับที่ 1 */
+  }
+
+  .home-page .secretary:nth-of-type(2) .member:nth-child(1) {
+    order: 1; /* ผู้ช่วยเหรัญญิก อยู่ลำดับที่ 2 */
   }
 }
