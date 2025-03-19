@@ -43,41 +43,34 @@ document.querySelector(".nav-links").addEventListener("click", (e) => {
   }
 });
 
-const slidesWrapper = document.querySelector(".slides-wrapper");
-const slides = document.querySelectorAll(".slide");
-let currentIndex = 0;
-
-function showNextSlide() {
-  // คำนวณการเลื่อน
-  currentIndex = (currentIndex + 1) % slides.length;
-  slidesWrapper.style.transform = `translateX(-${currentIndex * 100}vw)`; // เลื่อนภาพไปทางซ้าย
-}
-
-// เริ่มแสดงภาพแรก
-showNextSlide();
-
-// เปลี่ยนภาพทุก 3 วินาที
-setInterval(showNextSlide, 6000);
 let lastScroll = 0;
 const header = document.querySelector(".header");
-const scrollThreshold = 50; // ระยะเลื่อนขั้นต่ำ
+const scrollThreshold = 50;
 
 window.addEventListener("scroll", () => {
   const currentScroll = window.pageYOffset;
 
   if (currentScroll <= 0) {
-    // อยู่ด้านบนสุดให้แสดงเสมอ
     header.classList.remove("hide");
     return;
   }
 
   if (currentScroll > lastScroll + scrollThreshold) {
-    // เลื่อนลงมากกว่า threshold
     header.classList.add("hide");
   } else if (currentScroll < lastScroll - scrollThreshold) {
-    // เลื่อนขึ้นมากกว่า threshold
     header.classList.remove("hide");
   }
 
   lastScroll = currentScroll;
 });
+
+function animateProgressBars() {
+  const progressBars = document.querySelectorAll(".progress-fill");
+
+  progressBars.forEach((bar) => {
+    const width = bar.getAttribute("data-width");
+    bar.style.width = width + "%";
+  });
+}
+
+window.addEventListener("load", animateProgressBars);

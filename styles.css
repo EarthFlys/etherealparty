@@ -40,13 +40,14 @@
 .policy-card h3 {
   color: #2d3436;
   margin-bottom: 1rem;
-  font-size: 2.5rem;
+  font-size: 1.8rem; /* ปรับขนาดให้เหมาะสม */
 }
 
-.policy-card p1 {
+.policy-card p {
   color: #2d3436;
   margin-bottom: 1rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .policy-card ul {
@@ -58,7 +59,7 @@
   margin-bottom: 0.5rem;
   padding-left: 1.5rem;
   position: relative;
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 .policy-card li:before {
@@ -74,6 +75,7 @@
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
   display: inline-block;
+  font-size: 2rem;
 }
 
 /* เพิ่มสไตล์จาก CSS ที่มีอยู่แล้ว */
@@ -795,7 +797,6 @@ body {
   }
 }
 
-/* สไตล์ส่วนความคืบหน้าแบบใหม่ */
 .progress-section {
   padding: 4rem 1rem;
   background: #f8f9fa;
@@ -812,62 +813,60 @@ body {
 
 .progress-card {
   background: white;
-  border-radius: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .progress-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
 }
 
-.progress-image {
+.card-image {
   position: relative;
-  height: 250px;
+  height: 220px;
   overflow: hidden;
 }
 
-.progress-image img {
+.card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
 }
 
-.progress-card:hover .progress-image img {
-  transform: scale(1.1);
+.progress-card:hover .card-image img {
+  transform: scale(1.05);
 }
 
-.progress-overlay {
+.date-badge {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  padding: 1.5rem;
-  text-align: right;
-}
-
-.progress-percent {
+  top: 15px;
+  right: 15px;
+  background: rgba(108, 92, 231, 0.9);
   color: white;
-  font-size: 2rem;
-  font-weight: 700;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  display: inline-block;
-  animation: float 3s ease-in-out infinite;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  backdrop-filter: blur(2px);
 }
 
-.progress-content {
+.card-content {
   padding: 1.5rem;
 }
 
-.progress-content h3 {
+.card-content h3 {
   color: #2d3436;
-  margin-bottom: 1rem;
   font-size: 1.3rem;
-  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.card-content p {
+  color: #636e72;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
 .progress-bar {
@@ -875,7 +874,6 @@ body {
   background: #f0f0f0;
   border-radius: 6px;
   overflow: hidden;
-  position: relative;
 }
 
 .progress-fill {
@@ -883,66 +881,73 @@ body {
   background: linear-gradient(90deg, #6c5ce7, #8e7dff);
   border-radius: 6px;
   width: 0;
-  animation: progress 1.5s ease-out forwards;
-  position: relative;
+  transition: width 1.5s ease-out;
 }
 
-.progress-fill::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
-  animation: shine 2s infinite;
-}
-
-/* Keyframe Animations */
-@keyframes progress {
-  from {
-    width: 0;
-  }
-  to {
-    width: var(--width);
-  }
-}
-
-@keyframes shine {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .progress-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .progress-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .progress-image {
-    height: 200px;
-  }
-}
-
-@media (max-width: 480px) {
-  .progress-grid {
     grid-template-columns: 1fr;
   }
 
-  .progress-percent {
-    font-size: 1.5rem;
+  .card-image {
+    height: 250px;
+  }
+}
+
+/* จัดลำดับสมาชิกเฉพาะหน้าแรก */
+.home-page .member-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.home-page .member {
+  flex: 1 1 calc(33.33% - 40px); /* 3 คนต่อแถว */
+  max-width: calc(33.33% - 40px);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.home-page .member:nth-child(1) {
+  order: 1; /* รองประธานคนที่ 1 */
+}
+
+.home-page .member:nth-child(2) {
+  order: 2; /* ประธาน */
+}
+
+.home-page .member:nth-child(3) {
+  order: 3; /* รองประธานคนที่ 2 */
+}
+
+/* สำหรับมือถือ - เปลี่ยนลำดับ */
+@media (max-width: 768px) {
+  .home-page .member-list {
+    flex-direction: column;
+  }
+
+  .home-page .member {
+    flex: 1 1 100%; /* 1 คนต่อแถวในหน้าจอเล็ก */
+    max-width: 100%;
+  }
+
+  .home-page .member:nth-child(1) {
+    order: 2; /* รองประธานคนที่ 1 ไปอยู่ลำดับที่ 2 */
+  }
+
+  .home-page .member:nth-child(2) {
+    order: 1; /* ประธาน ขึ้นมาเป็นลำดับที่ 1 */
+  }
+
+  .home-page .member:nth-child(3) {
+    order: 3; /* รองประธานคนที่ 2 อยู่ลำดับที่ 3 */
   }
 }
